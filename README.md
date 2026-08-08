@@ -1,3 +1,7 @@
+![image alt ](https://github.com/Navneet2004Kumar/SMS/blob/b2aa4f8dffc168a290f37a92956ded9fb2ac7840/course%20(1).png)
+ 
+ 
+ 
  🎓 Student Management System
 
 A Student Management System built using Flask and MySQL for managing student records and courses with a clean and responsive user interface.
