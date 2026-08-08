@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    
+</head>
+<body>
+
+    {% include 'navbar.html' %}
+
+    <div class="container">
+        <h2 class="page-title">Dashboard</h2>
+
+        <!-- Stats -->
+        <div class="dashboard-grid">
+
+            <div class="dash-card">
+                <p class="stat-title">Total Students</p>
+                <p class="stat-number">{{ total_students }}</p>
+            </div>
+
+            <div class="dash-card">
+                <p class="stat-title">Total Courses</p>
+                <p class="stat-number">{{ total_courses }}</p>
+            </div>
+
+        </div>
+
+        <!-- Recent Students -->
+        <div class="card">
+            <h3>Recent Students</h3>
+
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Course</th>
+                        <th>Date of Birth</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% for r in recent_students %}
+                    <tr>
+                        <td>{{ r.name }}</td>
+                        <td>{{ r.course_name }}</td>
+                        <td>{{ r.dob }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+    {% include 'footer.html' %}
+
+</body>
+</html>

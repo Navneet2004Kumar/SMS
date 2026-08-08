@@ -1,0 +1,83 @@
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+{% include 'navbar.html' %}
+
+<div class="container">
+
+    <h2 class="page-title">📚 Course Management</h2>
+
+    <!-- Add Course -->
+    <div class="card">
+        <h3>Add New Course</h3>
+
+        <form action="/courses/add" method="POST" class="form-grid">
+
+            <input
+                type="text"
+                name="course_name"
+                placeholder="Enter Course Name"
+                required
+                maxlength="50"
+                pattern="[A-Za-z ]+"
+                title="Only alphabets and spaces are allowed."
+                oninput="this.value=this.value.replace(/[^A-Za-z ]/g,'')">
+
+            <button class="btn btn-primary" type="submit">
+                ➕ Add Course
+            </button>
+
+        </form>
+
+    </div>
+
+    <!-- Course List -->
+    <div class="card">
+
+        <h3>
+            Existing Courses
+            <span style="float:right;">
+                Total : {{ courses|length }}
+            </span>
+        </h3>
+
+        {% if courses %}
+
+        <table class="data-table">
+
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Course ID</th>
+                    <th>Course Name</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                {% for c in courses %}
+
+                <tr>
+                    <td>{{ loop.index }}</td>
+                    <td>{{ c.course_id }}</td>
+                    <td>{{ c.course_name }}</td>
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+        {% else %}
+
+        <p style="text-align:center; padding:20px;">
+            No courses available.
+        </p>
+
+        {% endif %}
+
+    </div>
+
+</div>
+
+{% include 'footer.html' %}

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>About</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+
+
+</head>
+<body>
+
+    {% include 'navbar.html' %}
+
+    <div class="container">
+        <h2 class="page-title">About</h2>
+
+        <div class="card">
+            <p>
+                This Student Management System is designed to demonstrate CRUD operations,
+                clean UI design, and integration with MySQL using Flask.
+                
+            </p>
+        </div>
+    </div>
+
+    {% include 'footer.html' %}
+</body>
+</html>

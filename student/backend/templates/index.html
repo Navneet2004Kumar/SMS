@@ -1,0 +1,159 @@
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+{% include 'navbar.html' %}
+
+<div class="container">
+
+    <h2 class="page-title">🎓 Student Records</h2>
+
+    <!-- Add Student -->
+    <div class="card">
+
+        <h3>Add New Student</h3>
+
+        <form action="/add" method="POST" class="form-grid">
+
+            <!-- Name -->
+            <input
+                type="text"
+                name="name"
+                placeholder="Full Name"
+                maxlength="100"
+                required
+                pattern="[A-Za-z ]+"
+                title="Only alphabets and spaces are allowed."
+                oninput="this.value=this.value.replace(/[^A-Za-z ]/g,'')">
+
+            <!-- DOB -->
+            <input
+                type="date"
+                name="dob"
+                max="{{ now().strftime('%Y-%m-%d') if now else '' }}"
+                required>
+
+            <!-- Gender -->
+            <select name="gender" required>
+                <option value="" disabled selected>Select Gender</option>
+                <option>Male</option>
+                <option>Female</option>
+            </select>
+
+            <!-- Contact -->
+            <input
+                type="tel"
+                name="contact"
+                placeholder="10 Digit Contact Number"
+                maxlength="10"
+                minlength="10"
+                pattern="[0-9]{10}"
+                title="Enter exactly 10 digits."
+                required
+                oninput="this.value=this.value.replace(/[^0-9]/g,'')">
+
+            <!-- Course -->
+            <select name="course_id" required>
+
+                <option value="" disabled selected>Select Course</option>
+
+                {% for course in courses %}
+                    <option value="{{ course.course_id }}">
+                        {{ course.course_name }}
+                    </option>
+                {% endfor %}
+
+            </select>
+
+            <button class="btn btn-primary" type="submit">
+                ➕ Add Student
+            </button>
+
+        </form>
+
+    </div>
+
+    <!-- Student Table -->
+    <div class="card">
+
+        <h3>
+            All Students
+            <span style="float:right;">
+                Total : {{ students|length }}
+            </span>
+        </h3>
+
+        {% if students %}
+
+        <table class="data-table">
+
+            <thead>
+
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>DOB</th>
+                    <th>Gender</th>
+                    <th>Contact</th>
+                    <th>Course</th>
+                    <th>Actions</th>
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                {% for s in students %}
+
+                <tr>
+
+                    <td>{{ s.student_id }}</td>
+                    <td>{{ s.name }}</td>
+                    <td>{{ s.dob }}</td>
+                    <td>{{ s.gender }}</td>
+                    <td>{{ s.contact }}</td>
+                    <td>{{ s.course_name }}</td>
+
+                    <td class="actions">
+
+                        <a href="/edit/{{ s.student_id }}"
+                           class="btn btn-edit">
+                           Edit
+                        </a>
+
+                        <form
+                            action="/delete/{{ s.student_id }}"
+                            method="POST"
+                            onsubmit="return confirm('Delete this student?');">
+
+                            <button
+                                type="submit"
+                                class="btn btn-delete">
+
+                                Delete
+
+                            </button>
+
+                        </form>
+
+                    </td>
+
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+        {% else %}
+
+        <p style="text-align:center;padding:20px;">
+            No students found.
+        </p>
+
+        {% endif %}
+
+    </div>
+
+</div>
+
+{% include 'footer.html' %}

@@ -1,0 +1,53 @@
+/* ===========================================================
+   EDIT STUDENT PAGE ONLY
+   =========================================================== */
+
+/* Grid layout */
+.edit-form {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+/* Form groups */
+.edit-form .form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Labels */
+.edit-form label {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: var(--primary);
+}
+
+/* Inputs & selects */
+.edit-form input,
+.edit-form select {
+    padding: 11px;
+    font-size: 14px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    transition: all 0.2s ease;
+}
+
+/* Focus effect */
+.edit-form input:focus,
+.edit-form select:focus {
+    border-color: var(--secondary);
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+    outline: none;
+}
+
+/* Button alignment */
+.edit-form .form-group:last-child {
+    justify-content: flex-end;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .edit-form {
+        grid-template-columns: 1fr;
+    }
+}
