@@ -22,3 +22,5 @@ A Student Management System built using Flask and MySQL for managing student rec
 - HTML
 - CSS
 - Bootstrap
+
+
