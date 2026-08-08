@@ -31,4 +31,4 @@ A Student Management System built using Flask and MySQL for managing student rec
 - CSS
 - Bootstrap
 
-
+![image alt](https://github.com/Navneet2004Kumar/SMS/blob/61478ef8e0ff1b7ee76934ae7f54906947670f26/dashboards%20(1).png)
